@@ -1,0 +1,316 @@
+/* Esqueleto para manter um núcleo centrado ou full-screen p/ 1024px */
+/* 
+        coloco a imagem modelo como background
+        considerando o size e a classe w-limite
+        resultando em uma tela cheia p/ res. de 1024px.
+        se a resolução for maior, centraliza..
+        
+        Agora dá p/ montar a codificação dos elementos
+        sobre ela c/ máxima fidelidade ao modelo.
+*/
+
+//Variáveis de configuração
+@largura-visivel: 1000px;  //Máximo conteúdo apresentado
+@limite-de-ajuste: 1019px; //Acima deste limite os valores ficam fixos e não percentuais
+@teste-do-git: fazendo;
+
+body{
+    margin: 0;
+    width: 100%;
+}
+
+/* 
+classe que limita todo o conteúdo ao tamanho máx de "@largura-visivel", 
+independente da resolução da tela.
+*/
+.w-limite{
+    margin: auto;                   //isso centraliza 
+    max-width: @largura-visivel;    //isso fixa o tamanho máx do conteúdo 
+    height: 100%;
+}
+
+//---------- O bloco abaixo é usado apenas durante o dev, deve ser comentado depois ------------
+
+@media (min-width: 641px) {
+    .w-limite{
+        //Esta imagem deve conter apenas o conteúdo apresentado >= 1024px
+    background-position: center top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+        background-image: url("../modelo-teste-v2-editado.jpg");
+    }
+}
+@media (max-width: 640px) {
+    .w-limite{
+        //Esta imagem deve conter apenas o conteúdo apresentado <= 640px
+        background-position: center top;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("../modelo-teste-mobile-v1.jpg");
+    }	
+}
+
+//---------- O bloco acima é usado apenas durante o dev, deve ser comentado depois ------------
+
+
+.w-bloco {
+    display: inline-block;
+    float: left;
+    height: 99%;
+    margin: 0;
+    padding: 0;
+}
+
+.w-bloco:after{ 
+    //Encerra o display inline
+    clear: left;
+}
+
+//------------------------------------------------------------------------------ Primeiro bloco
+#logo{
+    padding-left: 2.65%;
+    padding-top: 3.35%;
+    padding-bottom: 4.4%;
+    width: 25%;
+    img {
+        width: 91%;
+    }
+}
+@media (max-width: 640px){
+    //Troca o layout
+    #logo{
+        padding-top: 7%;
+        padding-bottom: 3.2%;
+        width: 63%;
+        text-align: right;
+        img {
+            width: 58.45%;
+        }
+    }
+}
+
+//------------------------------------------------------------------------------ Segundo bloco
+#login{
+    padding-left: 1%;
+    padding-top: 4.85%;
+    padding-bottom: 5px;
+    width: 16%;
+    font-family: 'Arial';
+    font-weight: bold;
+
+    a{
+        color: #808080;
+        text-decoration: none;
+    }
+
+    p:first-child{
+        font-size: 2vw;
+    }
+    p:last-child{
+        margin-top: 3%; //Altura do parágrafo
+        font-size: 1.33vw;
+    } 
+}
+@media (min-width: @limite-de-ajuste){
+    //Acima do limite, deixa fixo..
+    #login{
+        p:first-child{
+            font-size: 20.3px;
+        }
+        p:last-child{
+            font-size: 13.5px;
+        }
+    } 
+}
+@media (max-width: 640px){
+    //Troca o layout
+    #login{
+        background-color: #ffffff;
+        padding-left: 10.3%;
+        padding-top: 9.5%;
+        //padding-bottom: 5px;
+        width: 23.5%;
+        //text-align: center;
+
+        p:first-child{
+            font-size: 2.58vw;
+        }
+        p:last-child{
+            margin-top: 3%; //Altura do parágrafo
+            font-size: 1.75vw;
+        } 
+    }
+}
+
+
+//------------------------------------------------------------------------------ Terceiro bloco
+#pesquisa{
+    width: 35%; 
+    margin-top: 5.3%;
+}
+@media (max-width: 640px){
+    //Troca o layout
+    #pesquisa{
+        margin-top: -0.35vw;
+        width: 100%;
+        display: block;
+        background: rgb(251,198,61);
+    }
+}
+
+#form-pesquisa{
+    position: relative;
+}
+
+#campo-pesquisa{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.8vw;
+    height: 2.05vw;
+    padding: 0.5vw 0.5vw 0.5vw 5vw;
+    background-color: rgb(250, 196, 55);
+    border: none;
+    width: 28.6vw;
+    font-size: 1.4vw;
+}
+@media (min-width: @limite-de-ajuste){ 
+    //Acima do limite, deixa fixo..
+    #campo-pesquisa{
+        height: 20.5px;
+        width: 286px;
+        font-size: 14px;
+        padding: 5px 5px 5px 50px;
+    }
+}
+@media (max-width: 640px){ 
+    #campo-pesquisa{
+        padding: 0.55vw 0.55vw 0.55vw 10.5vw;
+        border-radius: 0px;
+        height: 4.55vw;
+        font-size: 2.8vw;
+    }
+}
+
+#campo-pesquisa::-webkit-input-placeholder{
+    color: black;
+    opacity: 1;
+}
+#campo-pesquisa::-moz-placeholder{
+    color: black;
+    opacity: 1;
+}
+#campo-pesquisa::-ms-input-placeholder{
+    color: black;
+    opacity: 1;
+}
+
+#bot-pesquisa{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.9vw;
+    height: 3.1vw;
+    width: 4vw;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    background-image: url("imagens/icone_pesquisa.png");
+    background-size: 1.9vw;
+    background-repeat: no-repeat;
+    color: black;
+    background-position: center;
+}
+@media (min-width: @limite-de-ajuste){ 
+    //Acima do limite, deixa fixo..
+    #bot-pesquisa{
+        height: 30px;
+        width: 42px;
+        background-size: 19px;
+        border-radius: 9px;
+    }
+}
+@media (max-width: 640px){
+    #bot-pesquisa{
+        border-radius: 0px;
+        height: 5.55vw;
+        width: 5.4vw;
+        left: 3.55vw;
+        background-size: 3.3vw;
+    }
+}
+
+//------------------------------------------------------------------------------ Quarto bloco
+#lang-skype{
+    background-color: #ffffff;
+    vertical-align: middle;
+    width: 16%;
+    float: right;
+    margin-top: 4.6%;
+    margin-left: 2%;
+}
+@media (max-width: 640px){ 
+    //Troca o layout
+    #lang-skype{
+        display: none;
+    }
+}
+.bandeiras{
+    text-align: center;
+    a{
+        padding-left: 4.4px;
+    }
+    img{
+        width: 16%;
+    }
+}
+
+.telefone{
+    text-align: center;
+    line-height: 25px;
+    margin-left: 11px;
+    a{
+        line-height: 3.5vw;
+        padding-left: 6%;
+        text-decoration: none;
+        color: rgb(6,173,238); 
+        font-family: 'ArialBD';
+        font-weight: bold;
+        font-size: 1.85vw;
+    }
+}
+
+.telefone:before{
+    content: '';
+    position: absolute;
+    background-image: url("imagens/skype.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 2.8vw;
+    margin-left: -2.5vw;
+    top: 6.7vw;
+    bottom: 0;
+}
+@media (max-width: 720px) {
+    //Ajuste necessário abaixo de 720px
+    .telefone{
+        line-height: 0;
+        margin-left: 0.8vw;
+    }
+}
+@media (min-width: @limite-de-ajuste){
+    //Acima do limite, deixa fixo..
+    .telefone{
+        a{
+            line-height: 39px;
+            font-size: 18.5px;
+        }
+    }
+    .telefone:before{
+        top: 67px;
+        width: 28px;
+        margin-left: -25px;
+    }
+}
