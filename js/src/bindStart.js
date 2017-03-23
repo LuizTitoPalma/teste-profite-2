@@ -51,7 +51,7 @@ controlaBanner('start');
 //Adiciona eventos ao cadastro e ao login
 document.getElementById("login").getElementsByTagName('a')[0].addEventListener("click", function () {
     modmCadastro.funcCadastro(function (resposta) {
-        console.log(resposta);
+        //console.log(resposta);
     });
 });
 document.getElementById("login").getElementsByTagName('a')[1].addEventListener("click", function () {

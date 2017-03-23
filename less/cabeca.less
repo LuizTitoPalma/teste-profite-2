@@ -19,6 +19,17 @@ body{
     width: 100%;
 }
 
+header{ 
+    height: 14.1vw;
+    max-height: 141px; //Limita a altura máxima
+}
+@media (max-width: 640px) {
+    header{
+        height: 30vw;
+        max-height: 300px;
+    }
+}
+
 /* 
 classe que limita todo o conteúdo ao tamanho máx de "@largura-visivel", 
 independente da resolução da tela.
@@ -30,13 +41,13 @@ independente da resolução da tela.
 }
 
 //---------- O bloco abaixo é usado apenas durante o dev, deve ser comentado depois ------------
-
+/*
 @media (min-width: 641px) {
     .w-limite{
         //Esta imagem deve conter apenas o conteúdo apresentado >= 1024px
-    background-position: center top;
-    background-size: 100%;
-    background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 100%;
+        background-repeat: no-repeat;
         background-image: url("../modelo-teste-v2-editado.jpg");
     }
 }
@@ -49,7 +60,7 @@ independente da resolução da tela.
         background-image: url("../modelo-teste-mobile-v1.jpg");
     }	
 }
-
+*/
 //---------- O bloco acima é usado apenas durante o dev, deve ser comentado depois ------------
 
 
@@ -125,12 +136,9 @@ independente da resolução da tela.
 @media (max-width: 640px){
     //Troca o layout
     #login{
-        background-color: #ffffff;
         padding-left: 10.3%;
         padding-top: 9.5%;
-        //padding-bottom: 5px;
         width: 23.5%;
-        //text-align: center;
 
         p:first-child{
             font-size: 2.58vw;
@@ -151,9 +159,9 @@ independente da resolução da tela.
 @media (max-width: 640px){
     //Troca o layout
     #pesquisa{
-        margin-top: -0.35vw;
-        width: 100%;
+        margin-top: 0.3vw;
         display: block;
+        width: 100%;
         background: rgb(251,198,61);
     }
 }
@@ -169,7 +177,7 @@ independente da resolução da tela.
     border-radius: 0.8vw;
     height: 2.05vw;
     padding: 0.5vw 0.5vw 0.5vw 5vw;
-    background-color: rgb(250, 196, 55);
+    background-color: rgb(238, 187, 0);
     border: none;
     width: 28.6vw;
     font-size: 1.4vw;
@@ -187,6 +195,8 @@ independente da resolução da tela.
     #campo-pesquisa{
         padding: 0.55vw 0.55vw 0.55vw 10.5vw;
         border-radius: 0px;
+        width: 100%;
+        max-width: 550px;
         height: 4.55vw;
         font-size: 2.8vw;
     }
