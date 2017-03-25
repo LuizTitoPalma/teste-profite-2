@@ -77,12 +77,8 @@ document.getElementById("contato").getElementsByTagName('a')[1].addEventListener
 
 //------------------------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', function () {
-    moduloProduto.createProd(modprodModal.bindModal);
-});
-
 window.onresize = window.onload = function () {
-//carrega imagens do banner
+    //carrega imagens do banner
     var images = document.querySelectorAll(".banner-image");
 
     //Abaixo de 640, considera-se um dispositivo mobile
@@ -95,4 +91,8 @@ window.onresize = window.onload = function () {
             images[i].src = images[i].getAttribute("data-src");
         }
     }
+
+    //Qdo load, calcula.. qdo resize recalcula os produtos para aparecer
+    //3 ou 4 por vez na tela por vez (definido em createProd)
+    moduloProduto.createProd(modprodModal.bindModal);
 };

@@ -3,10 +3,37 @@ var moduloProduto = (function (window, document) {
     function createProd(callback) {
 
         var produtos;
-
+        var num_prod_tela; //Número de produtos apresentados por vez na tela..
+        
+        if (window.innerWidth > 640) { //640px é o limite p/ troca de layout
+            num_prod_tela = 4;
+        } else {
+            num_prod_tela = 3;
+        }
+        //console.log(num_prod_tela);
+        
+        //Limpa os nodes anteriores antes de reconstruir
+        var parent = document.getElementById("slider2");
+        var xapaga = parent.getElementsByTagName("INPUT");
+        while(xapaga.length > 0) {
+            parent.removeChild(xapaga[0]);
+        }
+        parent = document.getElementById("productSliderArrows");
+        xapaga = parent.getElementsByTagName("LABEL");
+        while(xapaga.length > 0) {
+            parent.removeChild(xapaga[0]);
+        }
+        parent = document.getElementById("products-list");
+        xapaga = parent.getElementsByTagName("LI");
+        while(xapaga.length > 0) {
+            parent.removeChild(xapaga[0]);
+        }
+        
+        
         moduloJson.loadJSON(function (resposta) {
+            //aão previstos em produto.less até 12 produtos no máximo.
             var actual_JSON = JSON.parse(resposta);
-            for (var i = actual_JSON.products.length - 4; i >= 0; --i) {
+            for (var i = actual_JSON.products.length - num_prod_tela; i >= 0; --i) {
                 var radioInput = document.createElement('input');
 
                 if (actual_JSON.products[i].id === 1) {
@@ -22,11 +49,12 @@ var moduloProduto = (function (window, document) {
             }
 
             for (var i = 0; i < actual_JSON.products.length; i++) {
-                if (i < actual_JSON.products.length - 3) {
+                if (i < actual_JSON.products.length - (num_prod_tela)) {
                     var arrow = document.createElement('label');
 
                     arrow.setAttribute('for', 'bslides_' + actual_JSON.products[i].id);
                     document.getElementById('productSliderArrows').appendChild(arrow);
+                    //console.log(arrow);
                 }
 
                 var newElement = document.createElement('li');
@@ -56,7 +84,7 @@ var moduloProduto = (function (window, document) {
                 corpo_produto += '<p class="product-price">Por: <i>R$ ' + preco_final + '</i></p>';
 
                 if (num_parc > 0) {
-                    corpo_produto += '<p class="product-price-times">ou <span>até ' + num_parc + ' X </span> de <span>R$ ' + parcela + '</span></p>';
+                    corpo_produto += '<p class="product-price-times">ou <span>até ' + num_parc + 'X </span> de <span>R$ ' + parcela + '</span></p>';
                 } else {
                     corpo_produto += '<p class="product-price-times">&nbsp;</span></p>';
                 }
@@ -76,7 +104,6 @@ var moduloProduto = (function (window, document) {
                     corpo_produto += '<p class="product-save">&nbsp;</p>';
                 }
 
-
                 newElement.id = actual_JSON.products[i].id;
                 newElement.className = "prod";
                 newElement.innerHTML = corpo_produto;
@@ -85,13 +112,17 @@ var moduloProduto = (function (window, document) {
 
             var firstArrow = document.createElement('label');
             firstArrow.setAttribute('for', 'bslides_' + actual_JSON.products[0].id);
+            firstArrow.setAttribute('id', 'goto-first');
             firstArrow.setAttribute('class', 'goto-first');
             var lastArrow = document.createElement('label');
-            lastArrow.setAttribute('for', 'bslides_' + actual_JSON.products[actual_JSON.products.length - 4].id);
+            lastArrow.setAttribute('for', 'bslides_' + actual_JSON.products[actual_JSON.products.length - (num_prod_tela)].id);
+            lastArrow.setAttribute('id', 'goto-last');
             lastArrow.setAttribute('class', 'goto-last');
 
-            document.getElementById('productSliderArrows').appendChild(firstArrow);
+            //INVERTI A ORDEM DAS 2 LINHAS.. TESTAR DIREITO
             document.getElementById('productSliderArrows').appendChild(lastArrow);
+            document.getElementById('productSliderArrows').appendChild(firstArrow);
+           
 
             var price = document.querySelectorAll(".product-previous-price");
 
