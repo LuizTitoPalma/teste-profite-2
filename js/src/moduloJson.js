@@ -12,8 +12,8 @@ var moduloJson = (function (window, document) {
         Só funcionará dentro do server.. (http://tito/teste-profite-master) 
         ao concluir usar o do projetoecriacao p/html...
         */
-        xobj.open('GET', 'data/products.json', true);
-        //xobj.open('GET', 'https://projetoecriacao.websiteseguro.com/exemplojson/products.json', true);
+        //xobj.open('GET', 'data/products.json', true);
+        xobj.open('GET', 'https://projetoecriacao.websiteseguro.com/exemplojson/products.json', true);
 
         xobj.onreadystatechange = function () {
             if (xobj.readyState == 4 && xobj.status == "200") {

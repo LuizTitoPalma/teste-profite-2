@@ -1,3 +1,5 @@
+@largura-visivel: 1000px;
+
 footer{
     min-height: 250px;
     background: rgb(240,240,240);
@@ -6,68 +8,77 @@ footer{
 .rodape{
     height: 100%;
     width: 100%;
-    max-width: 1000px;    //isso fixa o tamanho máx do conteúdo 
+    max-width: @largura-visivel;    //isso fixa o tamanho máx do conteúdo 
     margin: 0 auto;
     text-align: center;
     
     font-family: 'Arial';
-    font-size: 1.1vw;
+    font-size: 1.4vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        font-size: 14px;
+    }
     color: #505050;
 
     div{
         display: inline-block;
         position: relative;
         vertical-align: top;
-        width: 33.33%;
-    }
-}
-@media (max-width: 640px){
-    .rodape{
-        width: 100%;
-        font-size: 8px;
     }
 }
 
 .end-contato{
-    padding: 10px 0px 0px 50px;
+    padding: 5vw 5vw 0 5.5vw;
     text-align: left;
 
     p{
-        padding-bottom: 8px;
+        padding-bottom: .8vw; 
     }
 
     p:first-child{
-        padding-top: 15px;
+        padding-top: 1.5vw;
+    }
+
+    @media (min-width: @largura-visivel){ //valores fixos
+        padding: 50px 50px 0 55px;
+        p{
+            padding-bottom: 8px; 
+        }
+        
+        p:first-child{
+            padding-top: 15px;
+        }
     }
 }
+
 
 .end-contato:before{
     content: '';
     display: inline-block;
-    height: 40px;
-    width: 50px;
+    height: 4vw;
+    width: 5vw;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
     left: 0;
+    @media (min-width: @largura-visivel){ //valores fixos
+        height: 40px;
+        width: 50px;
+    }
 }
 
 .end-contato.rj:before{
     background-image: url("imagens/icone_rj.png");
-    background-size: 38px;
+    background-size: 4.8vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        background-size: 48px;
+    }
 }
 
 .end-contato.sp:before{
     background-image: url("imagens/icone_sp.png");
-    background-size: 38px;
-}
-
-@media (max-width: 640px){
-    .end-contato.rj:before{
-        background-size: 30px;
-    }
-    .end-contato.sp:before{
-        background-size: 30px;
+    background-size: 4.8vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        background-size: 48px;
     }
 }
 
@@ -77,59 +88,84 @@ footer{
     color: #000000;
 }
 
+//----------------------------
+
 .contato a{
     background-color: #fac437;
-    margin-bottom: 6px;
     display: block;
-    height: 28px;
-    width: 133px;
+    margin-bottom: 0.6vw;
+    height: 3.8vw;
+    width: 13vw;
     text-transform: uppercase;
     text-decoration: none;
     position: relative;
     color: #000;
     text-align: left;
-    top: 16px;
+    top: 5vw;
+    font-family: 'Arial';
+    font-size: 1.1vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        margin-bottom: 6px;
+        height: 38px;
+        width: 130px;
+        top: 50px;
+        font-size: 11px;
+    }
 }
 
 .contato a:before{
     content: '';
     display: inline-block;
-    height: 16px;
-    width: 20px;
+    height: 2.2vw;
+    width: 2.2vw;
+    left: 1vw;
+    top: 1vw;
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    left: 10px;
-    top: 10px;
+    
+    @media (min-width: @largura-visivel){ //valores fixos
+        height: 22px;
+        width: 22px;
+        left: 10px;
+        top: 10px;
+    }                                          
 }
 
 .contato a:first-child{
-    line-height: 27px;
-    padding: 3px 0px 0px 35px;
+    line-height: 3.8vw;
+    padding: 0.3vw 0 0 3.7vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        line-height: 38px;
+        padding: 3px 0 0 37px;                                          
+    }                                          
 }
 
 .contato a:last-child{
-    padding: 3px 0px 0px 35px;
-}
-
-@media (max-width: 640px){
-    .contato a{
-        width: 92px;
-    }
-    .contato a:last-child{
-        padding: 8px 0px 0px 35px;
-        height: 22px;
-    }
+    line-height: 1.8vw;
+    padding: 0.3vw 0 0 3.7vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        line-height: 18px;
+        padding: 3px 0 0 37px;                                          
+    }                                          
 }
 
 .contato a:first-child:before{
     background-image: url("imagens/icone_contato.png");
-    background-size: 16px;
-    top: 8px;
+    background-size: 2.2vw;
+    top: 1vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        background-size: 22px;
+        top: 10px;
+    }
 }
 
 .contato a:last-child:before{
     background-image: url("imagens/icone_consultor.png");
-    background-size: 16px;
-    top: 8px;
+    background-size: 2.2vw;
+    top: 1vw;
+    @media (min-width: @largura-visivel){ //valores fixos
+        background-size: 22px;
+        top: 10px;
+    }
 }
